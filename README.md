@@ -15,6 +15,20 @@ CTGAN & LLMs (ChatGPT/Gemini): Used for generating and optimizing high-fidelity 
 
 Wireshark: For deep packet inspection and network traffic analysis.
 
+## Technical Implementation & Credits
+
+While the honeytoken generation logic and database architecture are original research components, the web interface was built upon a baseline containerized application.
+
+Web Interface: Based on the https://github.com/anveshmuppeda/docker-login-page.git by @anveshmuppeda.
+
+Modifications:
+
+Integrated a custom PHP-based Audit Logging system to track username, success status, and login_time .
+
+Configured Docker Compose to link the web service with isolated MySQL instances (login_net and extra_net) .
+
+Implemented Intentional Vulnerabilities to attract automated bot activity for research purposes .
+
 ## Architecture
 The system consists of three main containers:
 
@@ -25,7 +39,7 @@ Primary DB (MySQL): Stores application logs and the logins table on Port 3307.
 Extra-DB (MySQL): An isolated instance on Port 3306 containing the 3 database snapshots with honeytokens.
 
 ## Database Snapshots
-We implemented three versions of the Northwind database:
+We implemented three versions of the Northwind database [https://docs.yugabyte.com/stable/sample-data/northwind/]:
 
 Snapshot 1: Added an accounts table with synthetic credentials (hashed passwords).
 
@@ -47,12 +61,10 @@ Targeting: Port 3306 received 88.4% of all network packets, indicating a prefere
 
 Attacker Behavior: Captured logs revealed attempts at SQL Injection, Path Traversal, and Privilege Escalation (GRANT ALL PRIVILEGES).
 
-## Safety Warning
-This project contains intentional vulnerabilities for research purposes.
-
-DO NOT use default passwords (e.g., password1, password2, password3, password4) in a production environment.
-
-DO NOT expose this infrastructure to the public internet without proper monitoring.
+> [!CAUTION]
+This project contains intentional vulnerabilities for research purposes.\
+> DO NOT use default passwords (e.g., password1, password2, password3, password4) in a production environment.\
+> DO NOT expose this infrastructure to the public internet without proper monitoring.
 
 ### Thesis Committee
 Student: Petridou Anthi
