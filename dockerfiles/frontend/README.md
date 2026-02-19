@@ -1,8 +1,8 @@
-##Custom Security Monitoring (Audit Logging)
+## Custom Security Monitoring (Audit Logging)
 
 One of the primary modifications to the integrated web interface is the implementation of a custom Audit Logging mechanism. This feature is designed to capture all interaction attempts with the database, providing the necessary telemetry to detect honeytoken triggers.
 
-###Implementation Details
+### Implementation Details
 
 The log_attempt function was added to index-logic.php to intercept authentication requests and record them in the database :
 
